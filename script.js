@@ -1,29 +1,59 @@
 "use strict";
 
-const container = document.querySelector(".grid-container");
+// Overview: Using Flexbox to create a grid canvas
 
-function creatediv(number) {
-  for (let i = 0; i < number ** 2; i++) {
-    const divElement = document.createElement("div");
-    // Creates a new div element
+const gridContainer = document.querySelector(".grid-container");
+const gridText = document.querySelector("#grid-size");
+const applyButton = document.getElementById("Apply");
+const resetButton = document.getElementById("Reset");
+const inputGridNumber = document.getElementById("grid-number");
+let inputValue = inputGridNumber.textContent;
 
-    divElement.classList.add("grid-item");
-    // adds the grid-item style in the element
+let squareSize = 16;
 
-    divElement.addEventListener("mouseover", showHover);
-    divElement.addEventListener("mouseout", hideHover);
+createGrid(squareSize);
 
-    container.appendChild(divElement);
-    // Appends the div at the container
+// Creates the square divs
+function createDiv(size) {
+  const div = document.createElement("div");
+  div.classList.add("square");
+  div.style.width = `${size}px`;
+  div.style.height = `${size}px`;
+
+  return div;
+}
+
+// Creates the Grid and appends it
+function createGrid(gridSize) {
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      gridContainer.appendChild(
+        createDiv(gridContainer.clientWidth / gridSize)
+      );
+    }
   }
 }
 
-function showHover(e) {
-  e.target.style.backgroundColor = "lightblue";
+// Removes Grid and Creates another one
+function reset() {
+  while (gridContainer.firstChild) {
+    gridContainer.removeChild(gridContainer.lastChild);
+  }
+  createGrid(squareSize);
 }
 
-function hideHover(e) {
-  e.target.style.backgroundColor = "initial";
-}
+// Applying Event Listeners
+gridContainer.addEventListener("mouseover", function (e) {
+  if (e.target.matches(".square")) {
+    e.target.classList.add("active");
+  }
+});
 
-creatediv(16);
+inputGridNumber.addEventListener("input", function (e) {
+  squareSize = e.target.value;
+  gridText.textContent = `${squareSize}x${squareSize} Grid Size`;
+});
+
+applyButton.addEventListener("click", function () {
+  reset();
+});

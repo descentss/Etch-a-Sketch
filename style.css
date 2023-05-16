@@ -1,23 +1,94 @@
-* {
+:root {
+  --primary-light: #ddd;
+  --primary-dark: #222831;
+  --secondary-dark: #393e46;
+  --secondary-dark-hover: #4a4f57;
+  --secondary-dark-active: #5b5f68;
+  --header: #111720;
+  --primary-yellow: #fac650;
+  --primary-blue: lightblue;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+.heading {
+  display: auto;
+  text-align: center;
+  font-size: 48px;
+  border: 1px solid black;
+  padding: 30px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+
+  /* height: 100px; */
+  /* border: 1px solid black; */
+  margin: 20px 20px;
+  font-size: 24px;
+}
+
+#grid-size {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  border-radius: 5%;
+  font-size: 16px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 1;
+  color: #000;
+  user-select: none;
+  margin: 0rem 1rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#grid-number {
+  font-size: 20px;
+  padding: 2px;
+  width: 150px;
+  text-align: center;
+}
+
 .grid-container {
+  border: 2px solid var(--primary-dark);
   display: flex;
   flex-wrap: wrap;
-  width: 640px;
-  border: 1px solid black;
+  width: 70rem;
+  height: 70rem;
+  /* border: 1px solid black; */
 }
 
-.grid-item {
-  width: calc(100% / 16);
-  aspect-ratio: 1/1;
-  border: 1px solid black;
-  /* Sets the aspect ratio to 1:1 */
+.square {
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
 }
 
-/* .grid-item:hover {
-  background-color: lightblue;
-} */
+.square.active {
+  background-color: var(--primary-blue);
+}
