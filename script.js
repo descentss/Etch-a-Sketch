@@ -25,17 +25,14 @@ function createDiv(size) {
 
 // Creates the Grid and appends it
 function createGrid(gridSize) {
-  for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
-      gridContainer.appendChild(
-        createDiv(gridContainer.clientWidth / gridSize)
-      );
-    }
+  for (let i = 0; i < gridSize ** 2; i++) {
+    gridContainer.appendChild(createDiv(gridContainer.clientWidth / gridSize));
   }
 }
 
 // Removes Grid and Creates another one
 function reset() {
+  // While there is an existing child for gridContainer, delete
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.lastChild);
   }
@@ -55,5 +52,9 @@ inputGridNumber.addEventListener("input", function (e) {
 });
 
 applyButton.addEventListener("click", function () {
+  reset();
+});
+
+resetButton.addEventListener("click", function () {
   reset();
 });
